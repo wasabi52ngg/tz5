@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+# Модели не нужны для упрощенной версии
+# Все данные обрабатываются напрямую через API Битрикс24

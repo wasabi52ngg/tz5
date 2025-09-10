@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - PROJECT_NAME_PLACEHOLDER{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать в PROJECT_NAME_PLACEHOLDER</h1>
+<p>Приложение успешно интегрировано с Битрикс24</p>
+
+{% if user %}
+<h2>Пользователь авторизован</h2>
+<p><strong>ID:</strong> {{ user.id }}</p>
+<p><strong>Имя:</strong> {{ user.name }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+{% endif %}
+
+<h2>Информация о приложении</h2>
+<p><strong>Домен портала:</strong> {{ app_settings.portal_domain }}</p>
+<p><strong>Домен приложения:</strong> {{ app_settings.app_domain }}</p>
+<p><strong>Название приложения:</strong> {{ app_settings.app_name }}</p>
+{% endblock %}

@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
 from integration_utils.bitrix24.bitrix_user_auth.main_auth import main_auth
-from integration_utils.bitrix24.functions.batch_api_call import batch_api_call
+from integration_utils.bitrix24.functions.batch_api_call import _batch_api_call
 from django.conf import settings
 
 from .forms import ContactImportForm, ContactExportForm

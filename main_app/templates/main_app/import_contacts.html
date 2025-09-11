@@ -8,76 +8,97 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="header">
-        <h1>Импорт контактов</h1>
-        <p class="text-center mb-0">Загрузка контактов из файла в Битрикс24</p>
+<div class="container mt-4">
+    <!-- Заголовок -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">
+            <i class="fas fa-upload me-3"></i>Импорт контактов
+        </h1>
+        <p class="lead text-muted">Загрузка контактов из файла в Битрикс24</p>
     </div>
 
     <!-- Форма импорта -->
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-upload"></i> Загрузка файла
-        </div>
-        <div class="card-body">
-            <form method="post" enctype="multipart/form-data" id="import-form">
-                {% csrf_token %}
-                
-                <div class="form-group">
-                    <label class="form-label">Файл с контактами</label>
-                    <div class="file-upload-area">
-                        <div class="file-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-cloud-upload-alt text-primary me-2"></i>Загрузка файла
+                    </h3>
+                    
+                    <form method="post" enctype="multipart/form-data" id="import-form">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Файл с контактами</label>
+                            <div class="file-upload-area">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="file-upload-text">Нажмите для выбора файла или перетащите файл сюда</div>
+                                <div class="file-upload-hint">Поддерживаемые форматы: {{ supported_formats|join:", "|upper }}</div>
+                                {{ form.file }}
+                            </div>
+                            {% if form.file.errors %}
+                                <div class="text-danger mt-2">
+                                    {% for error in form.file.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="file-upload-text">Нажмите для выбора файла или перетащите файл сюда</div>
-                        <div class="file-upload-hint">Поддерживаемые форматы: {{ supported_formats|join:", "|upper }}</div>
-                        {{ form.file }}
-                    </div>
-                    {% if form.file.errors %}
-                        <div class="text-danger mt-2">
-                            {% for error in form.file.errors %}
-                                <small>{{ error }}</small>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="fas fa-upload"></i> Импортировать контакты
-                    </button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-upload me-2"></i>Импортировать контакты
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
     <!-- Информация о формате файла -->
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-info-circle"></i> Формат файла
-        </div>
-        <div class="card-body">
-            <p>Файл должен содержать следующие колонки:</p>
-            <ul>
-                <li><strong>имя</strong> - имя контакта</li>
-                <li><strong>фамилия</strong> - фамилия контакта</li>
-                <li><strong>отчество</strong> - отчество контакта (необязательно)</li>
-                <li><strong>номер телефона</strong> - номер телефона</li>
-                <li><strong>почта</strong> - email адрес</li>
-                <li><strong>компания</strong> - название компании (будет привязана по названию)</li>
-            </ul>
-            
-            <div class="alert alert-info">
-                <strong>Важно:</strong> Первая строка файла должна содержать заголовки колонок.
-                Компании будут автоматически привязаны к контактам по названию.
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-info-circle text-info me-2"></i>Формат файла
+                    </h5>
+                    <p class="mb-3">Файл должен содержать следующие колонки:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i><strong>имя</strong> - имя контакта</li>
+                                <li><i class="fas fa-check text-success me-2"></i><strong>фамилия</strong> - фамилия контакта</li>
+                                <li><i class="fas fa-check text-success me-2"></i><strong>отчество</strong> - отчество контакта (необязательно)</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i><strong>номер телефона</strong> - номер телефона</li>
+                                <li><i class="fas fa-check text-success me-2"></i><strong>почта</strong> - email адрес</li>
+                                <li><i class="fas fa-check text-success me-2"></i><strong>компания</strong> - название компании</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info border-0 mt-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Важно:</strong> Первая строка файла должна содержать заголовки колонок.
+                        Компании будут автоматически привязаны к контактам по названию.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Навигация -->
-    <div class="mb-4">
-        <a href="{% url 'main_app:index' %}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Назад
+    <div class="text-center mt-4">
+        <a href="{% url 'main_app:index' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Назад к главной
         </a>
     </div>
 

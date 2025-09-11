@@ -8,130 +8,74 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="header">
-        <h1>Импорт/Экспорт контактов</h1>
-        <p class="text-center mb-0">Работа с контактами Битрикс24</p>
+<div class="container mt-4">
+    <!-- Заголовок -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">
+            <i class="fas fa-users me-3"></i>Контакты Битрикс24
+        </h1>
+        <p class="lead text-muted">Импорт и экспорт контактов</p>
     </div>
 
-    <!-- Навигация -->
-    <ul class="nav nav-tabs" id="mainTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                <i class="fas fa-home"></i> Главная
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false">
-                <i class="fas fa-upload"></i> Импорт
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false">
-                <i class="fas fa-download"></i> Экспорт
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="logs-tab" data-bs-toggle="tab" href="#logs" role="tab" aria-controls="logs" aria-selected="false">
-                <i class="fas fa-history"></i> Логи
-            </a>
-        </li>
-    </ul>
-
-    <!-- Содержимое вкладок -->
-    <div class="tab-content" id="mainTabsContent">
-        <!-- Главная вкладка -->
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="stats-card">
-                        <div class="stats-number">{{ supported_formats|length }}</div>
-                        <div class="stats-label">Поддерживаемых форматов</div>
+    <!-- Основные действия -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-upload fa-3x text-primary"></i>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stats-card">
-                        <div class="stats-number">CSV</div>
-                        <div class="stats-label">Импорт/Экспорт</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stats-card">
-                        <div class="stats-number">XLSX</div>
-                        <div class="stats-label">Импорт/Экспорт</div>
-                    </div>
+                    <h3 class="card-title">Импорт контактов</h3>
+                    <p class="card-text text-muted mb-4">
+                        Загрузите файл с контактами для добавления в Битрикс24
+                    </p>
+                    <a href="{% url 'main_app:import_contacts' %}" class="btn btn-primary btn-lg px-4">
+                        <i class="fas fa-upload me-2"></i>Импортировать
+                    </a>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-upload"></i> Импорт контактов
-                        </div>
-                        <div class="card-body">
-                            <p>Загрузите файл с контактами для импорта в Битрикс24.</p>
-                            <p><strong>Поддерживаемые форматы:</strong> CSV, XLSX</p>
-                            <a href="{% url 'main_app:import_contacts' %}" class="btn btn-primary">
-                                <i class="fas fa-upload"></i> Импортировать контакты
-                            </a>
-                        </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-download fa-3x text-success"></i>
                     </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-download"></i> Экспорт контактов
-                        </div>
-                        <div class="card-body">
-                            <p>Выгрузите контакты из Битрикс24 в файл.</p>
-                            <p><strong>Поддерживаемые форматы:</strong> CSV, XLSX</p>
-                            <a href="{% url 'main_app:export_contacts' %}" class="btn btn-success">
-                                <i class="fas fa-download"></i> Экспортировать контакты
-                            </a>
-                        </div>
-                    </div>
+                    <h3 class="card-title">Экспорт контактов</h3>
+                    <p class="card-text text-muted mb-4">
+                        Выгрузите контакты из Битрикс24 в файл
+                    </p>
+                    <a href="{% url 'main_app:export_contacts' %}" class="btn btn-success btn-lg px-4">
+                        <i class="fas fa-download me-2"></i>Экспортировать
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-trash-alt"></i> Управление контактами
-                        </div>
-                        <div class="card-body">
-                            <div class="alert alert-warning">
-                                <strong>Внимание!</strong> Эта функция удалит ВСЕ контакты из Битрикс24. 
-                                Используйте только для тестирования!
-                            </div>
-                            <form method="post" action="{% url 'main_app:delete_all_contacts' %}" onsubmit="return confirm('Вы уверены, что хотите удалить ВСЕ контакты? Это действие нельзя отменить!');">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i> Удалить все контакты
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-info-circle"></i> Информация о системе
-                </div>
+    <!-- Информация о поддерживаемых форматах -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
                 <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-info-circle text-info me-2"></i>Поддерживаемые форматы
+                    </h5>
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong>Пользователь:</strong> {{ user.name }}</p>
-                            <p><strong>Портал:</strong> {{ app_settings.portal_domain }}</p>
+                            <p class="mb-2"><strong>Импорт:</strong></p>
+                            <ul class="list-unstyled">
+                                {% for format in supported_formats %}
+                                <li><i class="fas fa-check text-success me-2"></i>{{ format|upper }}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Поддерживаемые форматы:</strong></p>
-                            <ul>
+                            <p class="mb-2"><strong>Экспорт:</strong></p>
+                            <ul class="list-unstyled">
                                 {% for format in supported_formats %}
-                                <li>{{ format|upper }}</li>
+                                <li><i class="fas fa-check text-success me-2"></i>{{ format|upper }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -139,41 +83,28 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Импорт вкладка -->
-        <div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
-            <div class="text-center">
-                <a href="{% url 'main_app:import_contacts' %}" class="btn btn-primary btn-lg">
-                    <i class="fas fa-upload"></i> Перейти к импорту
-                </a>
-            </div>
-        </div>
-
-        <!-- Экспорт вкладка -->
-        <div class="tab-pane fade" id="export" role="tabpanel" aria-labelledby="export-tab">
-            <div class="text-center">
-                <a href="{% url 'main_app:export_contacts' %}" class="btn btn-success btn-lg">
-                    <i class="fas fa-download"></i> Перейти к экспорту
-                </a>
-            </div>
-        </div>
-
-        <!-- Управление вкладка -->
-        <div class="tab-pane fade" id="logs" role="tabpanel" aria-labelledby="logs-tab">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-cogs"></i> Управление системой
-                        </div>
-                        <div class="card-body">
-                            <div class="alert alert-info">
-                                <strong>Информация:</strong> В упрощенной версии логи не сохраняются. 
-                                Все операции выполняются напрямую через API Битрикс24.
-                            </div>
-                            <p>Для тестирования используйте функцию удаления всех контактов на главной странице.</p>
-                        </div>
+    <!-- Управление системой -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Управление системой
+                    </h5>
+                    <div class="alert alert-warning border-0 mb-3">
+                        <i class="fas fa-warning me-2"></i>
+                        <strong>Внимание!</strong> Эта функция удалит ВСЕ контакты из Битрикс24. 
+                        Используйте только для тестирования!
                     </div>
+                    <form method="post" action="{% url 'main_app:delete_all_contacts' %}" 
+                          onsubmit="return confirm('Вы уверены, что хотите удалить ВСЕ контакты? Это действие нельзя отменить!');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt me-2"></i>Удалить все контакты
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

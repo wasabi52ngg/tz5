@@ -1,84 +1,64 @@
-/* Стили для приложения импорта/экспорта контактов */
+/* Упрощенные стили для приложения импорта/экспорта контактов */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    line-height: 1.6;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px 0;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.header h1 {
-    margin: 0;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 300;
-}
-
-.nav-tabs {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    overflow: hidden;
-}
-
-.nav-tabs .nav-link {
-    color: #6c757d;
-    border: none;
-    padding: 15px 25px;
+/* Основные кнопки */
+.btn {
+    border-radius: 8px;
     font-weight: 500;
     transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.nav-tabs .nav-link:hover {
-    color: #667eea;
-    background-color: #f8f9fa;
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.nav-tabs .nav-link.active {
-    color: #667eea;
-    background-color: #f8f9fa;
-    border-bottom: 3px solid #667eea;
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
 }
 
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+/* Карточки */
 .card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    overflow: hidden;
 }
 
-.card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 20px;
-    font-weight: 600;
-    font-size: 1.2rem;
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
 }
 
 .card-body {
-    padding: 30px;
+    padding: 2rem;
 }
 
-.form-group {
-    margin-bottom: 25px;
+/* Формы */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .form-label {
@@ -87,253 +67,79 @@ body {
     margin-bottom: 8px;
 }
 
-.form-control {
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    padding: 12px 15px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-}
-
-.form-check-input {
-    margin-top: 0.3rem;
-}
-
-.form-check-label {
-    margin-left: 8px;
-    font-weight: 500;
-}
-
-.btn {
-    border-radius: 8px;
-    padding: 12px 25px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
-}
-
-.btn-success {
-    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-    color: white;
-}
-
-.btn-success:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(86, 171, 47, 0.3);
-}
-
-.btn-info {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-    color: white;
-}
-
-.btn-info:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
-}
-
-.btn-warning {
-    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-    color: white;
-}
-
-.btn-warning:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.3);
-}
-
-.table {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.table thead th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    font-weight: 600;
-    padding: 15px;
-}
-
-.table tbody td {
-    padding: 15px;
-    border-top: 1px solid #e9ecef;
-    vertical-align: middle;
-}
-
-.table tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
-.badge {
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
-}
-
-.badge-success {
-    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-    color: white;
-}
-
-.badge-warning {
-    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-    color: white;
-}
-
-.badge-danger {
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    color: white;
-}
-
-.badge-info {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-    color: white;
-}
-
-.alert {
-    border: none;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 25px;
-    font-weight: 500;
-}
-
-.alert-success {
-    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-    color: #155724;
-}
-
-.alert-danger {
-    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-    color: #721c24;
-}
-
-.alert-warning {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-    color: #856404;
-}
-
-.alert-info {
-    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
-    color: #0c5460;
-}
-
-.progress {
-    height: 8px;
-    border-radius: 10px;
-    background-color: #e9ecef;
-    overflow: hidden;
-}
-
-.progress-bar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    transition: width 0.6s ease;
-}
-
-.stats-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-}
-
-.stats-card:hover {
-    transform: translateY(-5px);
-}
-
-.stats-card .stats-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #667eea;
-    margin-bottom: 10px;
-}
-
-.stats-card .stats-label {
-    color: #6c757d;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-}
-
-.date-range-fields {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    border: 2px dashed #dee2e6;
-}
-
-.date-range-fields.show {
-    display: block;
-}
-
+/* Область загрузки файлов */
 .file-upload-area {
     border: 3px dashed #dee2e6;
-    border-radius: 15px;
-    padding: 40px;
+    border-radius: 12px;
+    padding: 3rem 2rem;
     text-align: center;
     background-color: #f8f9fa;
     transition: all 0.3s ease;
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .file-upload-area:hover {
-    border-color: #667eea;
-    background-color: #f0f2ff;
+    border-color: #007bff;
+    background-color: #f0f8ff;
 }
 
 .file-upload-area.dragover {
-    border-color: #667eea;
-    background-color: #e8f0fe;
+    border-color: #007bff;
+    background-color: #e3f2fd;
 }
 
 .file-upload-icon {
     font-size: 3rem;
     color: #6c757d;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
 .file-upload-text {
-    color: #6c757d;
+    color: #495057;
     font-size: 1.1rem;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .file-upload-hint {
-    color: #adb5bd;
+    color: #6c757d;
     font-size: 0.9rem;
 }
 
+/* Алерты */
+.alert {
+    border-radius: 8px;
+    border: none;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Спиннер загрузки */
 .loading-spinner {
     display: none;
     text-align: center;
-    padding: 20px;
+    padding: 2rem;
 }
 
 .spinner-border {
@@ -342,25 +148,134 @@ body {
     border-width: 0.3em;
 }
 
+/* Поля для выбора дат */
+.date-range-fields {
+    display: none;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+}
+
+.date-range-fields.show {
+    display: block;
+}
+
+/* Таблицы */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+.table tbody td {
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Прогресс-бары */
+.progress {
+    height: 8px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    transition: width 0.6s ease;
+}
+
+/* Бейджи */
+.badge {
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
+        padding: 1rem;
     }
     
     .card-body {
-        padding: 20px;
+        padding: 1.5rem;
     }
     
     .btn {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 0.5rem;
     }
     
-    .table-responsive {
-        font-size: 0.9rem;
+    .file-upload-area {
+        padding: 2rem 1rem;
     }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Улучшенные тени */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* Стили для иконок */
+.fa-3x {
+    font-size: 3em;
+}
+
+/* Улучшенные цвета текста */
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
 }

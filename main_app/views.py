@@ -1,24 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Представления для импорта и экспорта контактов
-"""
 import os
 import logging
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 from django.utils import timezone
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 
 from integration_utils.bitrix24.bitrix_user_auth.main_auth import main_auth
-from integration_utils.bitrix24.functions.batch_api_call import _batch_api_call
 from django.conf import settings
 
 from .forms import ContactImportForm, ContactExportForm
-from .services import ContactImportService, ContactExportService, ContactDeleteService
+from .utils import ContactImportService, ContactExportService, ContactDeleteService
 from .file_handlers import FileProcessor, FileHandlerFactory
 
 logger = logging.getLogger(__name__)

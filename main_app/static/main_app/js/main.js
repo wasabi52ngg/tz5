@@ -243,27 +243,27 @@ document.addEventListener('ajaxSuccess', function(e) {
     hideLoadingSpinner();
 });
 
-// Функция для обновления статистики
-function updateStats() {
-    fetch('/api/stats/')
-        .then(response => response.json())
-        .then(data => {
-            // Обновляем статистику на странице
-            const statsElements = document.querySelectorAll('.stats-number');
-            statsElements.forEach(element => {
-                const statType = element.getAttribute('data-stat');
-                if (data[statType] !== undefined) {
-                    element.textContent = data[statType];
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Ошибка при получении статистики:', error);
-        });
-}
+// Функция для обновления статистики (отключена)
+// function updateStats() {
+//     fetch('/api/stats/')
+//         .then(response => response.json())
+//         .then(data => {
+//             // Обновляем статистику на странице
+//             const statsElements = document.querySelectorAll('.stats-number');
+//             statsElements.forEach(element => {
+//                 const statType = element.getAttribute('data-stat');
+//                 if (data[statType] !== undefined) {
+//                     element.textContent = data[statType];
+//                 }
+//             });
+//         })
+//         .catch(error => {
+//             console.error('Ошибка при получении статистики:', error);
+//         });
+// }
 
-// Автообновление статистики каждые 30 секунд
-setInterval(updateStats, 30000);
+// Автообновление статистики каждые 30 секунд (отключено)
+// setInterval(updateStats, 30000);
 
 // Функция для копирования в буфер обмена
 function copyToClipboard(text) {

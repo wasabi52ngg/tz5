@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Формы для импорта и экспорта контактов
-"""
 from django import forms
 from django.utils import timezone
 from datetime import timedelta

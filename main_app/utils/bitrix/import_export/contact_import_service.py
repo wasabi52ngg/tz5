@@ -47,12 +47,12 @@ class ContactImportService:
         contacts_to_create = []
         company_names = set()
         
-        for i, contact_data in enumerate(contacts_data):
+        for contact_data in contacts_data:
             contact_fields = self._prepare_contact_fields(contact_data)
             contacts_to_create.append(contact_fields)
             
-            # Собираем уникальные названия компаний
-            company_name = contact_data.get('компания', '').strip()
+            # Собираем уникальные названия компаний (проверяем оба варианта)
+            company_name = contact_data.get('компания', '').strip() or contact_data.get('Компания', '').strip()
             if company_name:
                 company_names.add(company_name)
         
@@ -165,11 +165,12 @@ class ContactImportService:
         # Группируем контакты по компаниям для пакетной обработки
         company_links = []
         for contact in created_contacts:
-            company_name = contact['data'].get('компания', '').strip()
+            company_name = contact['data'].get('компания', '').strip() or contact['data'].get('Компания', '').strip()
             if company_name and company_name in company_name_to_id:
                 company_links.append({
                     'contact_id': contact['id'],
-                    'company_id': company_name_to_id[company_name]
+                    'company_id': company_name_to_id[company_name],
+                    'company_name': company_name
                 })
         
         if not company_links:

@@ -3,7 +3,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
-
+from django.http import HttpResponse
 from integration_utils.bitrix24.bitrix_user_auth.main_auth import main_auth
 from django.conf import settings
 

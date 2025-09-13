@@ -2,11 +2,12 @@
 Утилиты для работы с приложением
 """
 
-# Импорты всех сервисов Битрикс24
-from .bitrix import (
+from .contacts import (
     BitrixContactService,
-    ContactDeleteService,
-    BitrixCompanyService,
+    ContactDeleteService)
+from .companies import (
+    BitrixCompanyService)
+from .import_export import (
     ContactImportService,
     ContactExportService,
 

@@ -45,39 +45,28 @@ class BitrixCompanyService:
             logger.error(f"Ошибка при получении списка компаний: {e}")
             raise
     
-    def get_companies_batch(self, company_names: List[str], chunk_size: int = 50) -> Dict[str, Any]:
+    def get_companies_by_names(self, company_names: List[str]) -> Dict[str, str]:
         """
-        Получить компании по названиям пакетно с эффективной обработкой
+        Получить компании по названиям одним запросом
         
         Args:
             company_names: Список названий компаний
-            chunk_size: Размер чанка для пакетной обработки
             
         Returns:
-            Результат пакетного получения компаний
+            Словарь {название_компании: ID_компании}
         """
-        from integration_utils.bitrix24.functions.batch_api_call import _batch_api_call
-        
-        methods = []
-        for i, company_name in enumerate(company_names):
-            methods.append((
-                f'company_{i}',
-                'crm.company.list',
-                {
-                    'filter': {'TITLE': company_name},
-                    'select': ['ID', 'TITLE']
-                }
-            ))
+        if not company_names:
+            return {}
         
         try:
-            return _batch_api_call(
-                methods=methods,
-                bitrix_user_token=self.user_token,
-                function_calling_from_bitrix_user_token_think_before_use=True,
-                chunk_size=min(chunk_size, 50),
-                halt=0,
-                timeout=60
+            response = self.get_companies_list(
+                filters={'TITLE': company_names},
+                select=['ID', 'TITLE']
             )
+            
+            companies = response.get('result', [])
+            return {company['TITLE']: company['ID'] for company in companies}
+            
         except Exception as e:
-            logger.error(f"Ошибка при пакетном получении компаний: {e}")
+            logger.error(f"Ошибка при получении компаний по названиям: {e}")
             raise

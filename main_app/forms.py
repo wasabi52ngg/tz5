@@ -50,7 +50,6 @@ class ContactExportForm(forms.Form):
         ('today', 'За сегодня'),
         ('week', 'За последнюю неделю'),
         ('month', 'За последний месяц'),
-        ('custom', 'Выбрать период'),
     ]
     
     format = forms.ChoiceField(
@@ -129,7 +128,5 @@ class ContactExportForm(forms.Form):
             return now - timedelta(days=7), now
         elif export_period == 'month':
             return now - timedelta(days=30), now
-        elif export_period == 'custom':
-            return self.cleaned_data.get('date_from'), self.cleaned_data.get('date_to')
         else:  # all
             return None, None

@@ -58,8 +58,7 @@ class ContactImportService:
         
         # Шаг 2: Создаем контакты чанками для эффективности
         created_contacts = []
-        total_chunks = (len(contacts_to_create) + self.chunk_size - 1) // self.chunk_size
-        
+
         for chunk_idx in range(0, len(contacts_to_create), self.chunk_size):
             chunk = contacts_to_create[chunk_idx:chunk_idx + self.chunk_size]
             chunk_contacts_data = contacts_data[chunk_idx:chunk_idx + self.chunk_size]
@@ -102,21 +101,11 @@ class ContactImportService:
                         f"Не удалось импортировать контакт номер {chunk_idx + i + 1}: {str(e)}"
                     )
         
-        # Шаг 3: Получаем компании пакетно (если есть)
+        # Шаг 3: Получаем компании одним запросом (если есть)
         if company_names and created_contacts:
             try:
-                companies_batch = self.company_service.get_companies_batch(
-                    list(company_names), 
-                    chunk_size=self.chunk_size
-                )
-                
-                # Создаем словарь название -> ID компании
-                company_name_to_id = {}
-                for key, response in companies_batch.items():
-                    if response['error'] is None and response['result']:
-                        companies = response['result']
-                        if companies:
-                            company_name_to_id[companies[0]['TITLE']] = companies[0]['ID']
+                # Получаем компании одним запросом
+                company_name_to_id = self.company_service.get_companies_by_names(list(company_names))
                 
                 # Шаг 4: Привязываем компании к контактам пакетно
                 self._link_companies_to_contacts(created_contacts, company_name_to_id, result)

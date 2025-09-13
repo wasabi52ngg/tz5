@@ -244,7 +244,7 @@ class XLSXFileHandler(BaseFileHandler):
 
 
 class FileHandlerFactory:
-    """Фабрика для создания обработчиков файлов"""
+    """Работа с созданием обработчиков файлов"""
     
     _handlers = {
         '.csv': CSVFileHandler,

@@ -57,7 +57,6 @@ class BitrixContactService:
             ))
         
         try:
-            # Используем _batch_api_call напрямую для лучшего контроля
             return _batch_api_call(
                 methods=methods,
                 bitrix_user_token=self.user_token,
